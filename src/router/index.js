@@ -15,6 +15,11 @@ export default new Router({
             meta: { title: '自述文件' },
             children:[
                 {
+                    path: '/maps',
+                    component: resolve => require(['../components/page/Maps.vue'], resolve),
+                    meta: { title: '地图展示' }
+                },
+                {
                     path: '/dashboard',
                     component: resolve => require(['../components/page/Dashboard.vue'], resolve),
                     meta: { title: '系统首页' }

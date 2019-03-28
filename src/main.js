@@ -9,11 +9,22 @@ import './assets/css/icon.css';
 import './components/common/directives';
 import "babel-polyfill";
 
-Vue.config.productionTip = false
+import VueAMap from 'vue-amap';
+
+Vue.config.productionTip = true
 Vue.use(ElementUI, {
     size: 'small'
 });
+
 Vue.prototype.$axios = axios;
+
+Vue.use(VueAMap)
+VueAMap.initAMapApiLoader({
+    key: '6172b79ae8e4b3d99e1ff9b9158c40c8',
+    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+    v: '1.4.13'
+
+})
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
@@ -38,5 +49,6 @@ router.beforeEach((to, from, next) => {
 
 new Vue({
     router,
+    VueAMap,
     render: h => h(App)
 }).$mount('#app')

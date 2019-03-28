@@ -39,6 +39,11 @@
                 collapse: false,
                 items: [
                     {
+                        icon: 'el-icon-lx-picfill',
+                        index: 'maps',
+                        title: '地图展示'
+                    },
+                    {
                         icon: 'el-icon-lx-home',
                         index: 'dashboard',
                         title: '系统首页'
