@@ -4,10 +4,13 @@
       <!-- 地图打点 -->
       
         <el-amap-marker v-for="marker in markers" :position="marker.position" :events="marker.events"></el-amap-marker>
-      
+      <el-popover placement="right" title="标题" width="200" trigger="click" content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"></el-popover>
     </el-amap>
 
-    <el-popover placement="right" title="标题" width="200" trigger="click" content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"></el-popover>
+    <el-row class="fix-print-btn">
+      <el-button type="success" @click="printBtn">打印地图，其他的不打</el-button>
+    </el-row> 
+    
 
     <!-- <el-table v-show="tables" :data="tableData" style="width: 300px;height: 200px;position: absolute; right: 10px; top: 10px;border: 1px solid #ccc;">
       <el-table-column prop="date" label="日期" width="100"></el-table-column>
@@ -34,7 +37,7 @@
 
     <!-- 图例 -->
     <div class="legend-area">
-      <span class="legend-title">图 例</span>
+      <span class="legend-title">图 1 例</span>
       <br>
       <el-checkbox
         :indeterminate="isIndeterminate"
@@ -100,12 +103,36 @@ export default {
       let checkedCount = value.length;
       this.checkAll = checkedCount === this.cities.length;
       this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+    },
+    printBtn(){ // 打印地图
+      let header = document.getElementsByClassName('header')[0]
+      let sidebar = document.getElementsByClassName('sidebar')[0]
+      let tags = document.getElementsByClassName('tags')[0]
+      let sidebarMenu = document.getElementsByClassName('sidebar-el-menu')[0]
+      let legendArea = document.getElementsByClassName('legend-area')[0]
+      // let contentBox = document.getElementsByClassName('content-box')[0]
+
+      document.getElementsByClassName('content-box')[0].style.top = '0'
+      document.getElementsByClassName('content-box')[0].style.left = '0'
+      document.getElementsByClassName('content-box')[0].style.width = '100%'
+
+      header.classList.add('print-hide-css')
+      sidebar.classList.add('print-hide-css')
+      tags.classList.add('print-hide-css')
+      sidebarMenu.classList.add('print-hide-css')
+      legendArea.classList.add('print-hide-css')
+
+
+
+      window.print()
+      window.location.reload()
+
     }
   },
-  mounted() {
+  created() {
     let markers = [];
     // let windows = [];
-    let num = 10;
+    let num = 5;
     let self = this;
 
     for (let i = 0; i < num; i++) {
@@ -158,5 +185,14 @@ export default {
   display: block;
   padding: 10px;
   border-bottom: 1px solid #eee;
+}
+.fix-print-btn{
+  position: absolute;
+  top: 10px;
+  left: 45%;
+}
+/* 添加一个隐藏的类 */
+.print-hide-css{
+  display: none;
 }
 </style>
