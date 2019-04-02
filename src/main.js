@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios';
 import ElementUI from 'element-ui';
-import VueAMap from 'vue-amap';
+// import VueAMap from 'vue-amap';
 import 'element-ui/lib/theme-chalk/index.css'; // 默认主题
 // import '../src/assets/css/theme-green/index.css';       // 浅绿色主题
 import './assets/css/icon.css';
@@ -19,12 +19,12 @@ Vue.use(ElementUI, {
 
 Vue.prototype.$axios = axios;
 
-Vue.use(VueAMap)
-VueAMap.initAMapApiLoader({
-    key: '6172b79ae8e4b3d99e1ff9b9158c40c8',
-    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
-    v: '1.4.13'
-})
+// Vue.use(VueAMap)
+// VueAMap.initAMapApiLoader({
+//     key: '6172b79ae8e4b3d99e1ff9b9158c40c8',
+//     plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+//     v: '1.4.13'
+// })
 
 
 //使用钩子函数对路由进行权限跳转
@@ -50,6 +50,6 @@ router.beforeEach((to, from, next) => {
 
 new Vue({
     router,
-    VueAMap,
+    // VueAMap,
     render: h => h(App)
 }).$mount('#app')
